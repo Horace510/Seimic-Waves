@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import matplotlib.pyplot as plt
 import timeit
 
@@ -25,7 +25,7 @@ Layer   roh[g/cm]   K[GPa]      Domain[Km]
 
 u: prticle velocity [m/s]
 p : pressure [MPa]
-roh>0: density [g/cm]
+ro>0: density [g/cm]
 K>0: bulk modulus [GPa]
 
 x in {10,20,30}
@@ -33,3 +33,9 @@ x in {10,20,30}
 # DP-SBP-SAT scheme using 4th order DP-SBP and RK4 
 '''
 
+rohs = [1.5,1.9,2.1,3]
+Ks = [6.4813,8.3538,10.3719,9]
+Domains = [(0,10),(10,20),(20,30),(30,40)]
+X = [10,20,30]
+
+D = np.zeros()
