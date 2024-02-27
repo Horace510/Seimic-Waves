@@ -9,6 +9,17 @@ import timeit
 
 #plt.switch_backend("TkAgg")          # plots in external window
 # plt.switch_backend("nbagg")           # plots within this notebook
+'''
+rho*u_t + p_x = 0, 1/K*p_t + u_x = 0, x in [0,L], t>=0
+p(0,t) = 0, 1/2(Z*u(L,t)-p(L,t))=0, Z = sqrt(rho*K)
+u(x,0)=f(x), p(x,0)=g(x)
+
+
+
+'''
+
+
+
 
 
 
@@ -20,11 +31,11 @@ nx = 501        # grid points in x
 dx = L/(nx-1)    # grid increment in x
 cs = 3.464       # velocity (km/s) (can be an array)                                                                                                             
 iplot = 5       # snapshot frequency
-rho = 2.6702     # density [g/cm^3]
+rho = 1    # density [g/cm^3]
 mu = rho*cs**2   # shear modulus [GPa]
 Zs = rho*cs      # shear impedance 
 
-order = 6        # order of accuracy
+order = 4        # order of accuracy
 
 
 #Initialize the domain
