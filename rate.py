@@ -1,11 +1,8 @@
 ##accoustic wave 
-
-
-def elastic_rate( 
-        
 import first_derivative_sbp_operators
 import numpy as np
-import boundarycondition
+import boundarycondition        
+
 def elastic_rate(
     hv,
     hs,
