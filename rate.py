@@ -1,3 +1,6 @@
+import first_derivative_sbp_operators
+import numpy as np
+import boundarycondition
 def elastic_rate(
     hv,
     hs,
@@ -21,9 +24,7 @@ def elastic_rate(
 ):
     # we compute rates that will be used for Runge-Kutta time-stepping
     #
-    import first_derivative_sbp_operators
-    import numpy as np
-    import boundarycondition
+
 
     V = np.zeros((nx, 1))
     S = np.zeros((nx, 1))
