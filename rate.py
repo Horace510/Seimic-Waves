@@ -1,3 +1,8 @@
+##accoustic wave 
+
+
+def elastic_rate( 
+        
 import first_derivative_sbp_operators
 import numpy as np
 import boundarycondition
@@ -22,6 +27,9 @@ def elastic_rate(
     type_0,
     forcing,
 ):
+
+
+
     # we compute rates that will be used for Runge-Kutta time-stepping
     #
 
@@ -181,17 +189,17 @@ def mms(V, S, V_t, S_t, V_x, S_x, y, t, type_0):
                 + np.exp(-(y - cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
             )
         )
-
-        S[:, :] = (
-            1
-            / np.sqrt(2.0 * np.pi * delta ** 2)
-            * 0.5
-            * Zs
-            * (
-                np.exp(-(y + cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
-                - np.exp(-(y - cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
-            )
-        )
+        S[:, :] = 0
+        # S[:, :] = (
+        #     1
+        #     / np.sqrt(2.0 * np.pi * delta ** 2)
+        #     * 0.5
+        #     * Zs
+        #     * (
+        #         np.exp(-(y + cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
+        #         - np.exp(-(y - cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
+        #     )
+        # )
 
         V_t[:, :] = 0
         S_t[:, :] = 0
