@@ -99,9 +99,7 @@ def advection_rate(hv, v, nx, dx, order, t, y, tau):
     # boundary forcing
     g(V0, t)
 
-    # print(Vn)
-
-    # penalize boundaries with the SAT terms
+    # penalize boundaries with the SAT terms (Change)
     hv[0, :] = hv[0, :] - tau / h11 * (v[0, :] - V0)
 
 
@@ -132,7 +130,7 @@ def impose_bc(
     h11 = np.zeros((1, 1))
     penaltyweight(h11, dx, order)
 
-    mv = np.zeros((1, 1))
+    mv = np.zeros((1, 1)) ## mu
     ms = np.zeros((1, 1))
 
     pv = np.zeros((1, 1))
@@ -145,7 +143,7 @@ def impose_bc(
     sn = s[nx - 1, :]
 
     # boundary forcing
-    V0 = V[0, :]
+    V0 = V[0, :] ## These are the bondary stencile 
     S0 = S[0, :]
 
     Vn = V[nx - 1, :]
@@ -223,7 +221,9 @@ def mms(V, S, V_t, S_t, V_x, S_x, y, t, type_0):
 
 
 def g(V, t):
-
+    '''
+    
+    '''
     import numpy as np
 
     V[:, :] = 0.0

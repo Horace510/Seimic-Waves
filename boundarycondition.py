@@ -1,7 +1,12 @@
 import numpy as np
 
 
-def bcm(mv, ms, v, s, V, S, rho, mu, r):
+def bcm(mv, ms, v, s, V, S, rho, mu, r, K):
+    Z = np.sqrt(rho*K)
+    #########################
+    #########################
+
+
 
     cs = np.sqrt(mu / rho)
     zs = rho * cs
