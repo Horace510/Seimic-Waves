@@ -6,7 +6,9 @@
 2. figure out the logic behind each file, which file use which file.
 
 1DSingleBlock.py:
+
 Dependencies:
+
 - rate.py (first_derivative_sbp_operators.py, boundarycondition.py)
 - utils.py
 - time_integrator.py (rate.py)
