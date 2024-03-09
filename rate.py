@@ -249,7 +249,8 @@ def g(V, t):
     if t <= 1.0 and t >= 0.0:
         V[:, :] = (np.sin(np.pi * t)) ** 4
 
-
+# To update penalty term h11 based on dx and the
+# required order
 def penaltyweight(h11, dx, order):
 
     if order == 2:

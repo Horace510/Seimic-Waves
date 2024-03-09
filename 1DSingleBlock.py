@@ -2,7 +2,7 @@
 # Import necessary routines
 import numpy as np
 import matplotlib.pyplot as plt
-# import time_integrator
+import time_integrator
 import rate
 import utils
 import timeit
