@@ -25,27 +25,38 @@ def elastic_rate(
     forcing,
 ):
 
-
+    ## hv,hs,y,r0,r1 is still unknown, 
+    ## v is v, 
+    ## s is sigma, 
+    ## rho,mu is constant
+    ## nx is the number of grids in space line
+    ## dx is the distance betweeen consecutive space grid
+    ## oreder is the order of time intergration
+    ## t is the time 
+    ## tau is the SAT penalty coefficients
+    ## type_0 is the type of initial guess of our fuctions v and sigma.
+    ## forcing is the forcing term as the name suggested.
 
     # we compute rates that will be used for Runge-Kutta time-stepping
-    #
 
+    V = np.zeros((nx, 1)) ## This is the V function.
+    S = np.zeros((nx, 1))  ## This is the \sigma function.
+    Vt = np.zeros((nx, 1)) ## This is the LHS: \frac{d V}{d t}.
+    St = np.zeros((nx, 1))  ## This is the LHS: \frac{d \sigma}{d t}.
+    Vx = np.zeros((nx, 1))  ## This is the discritised spatial derivative of v, that will be obtain using SBP operators.
+    Sx = np.zeros((nx, 1))  ## This is the discritised spatial derivative of \sigma, that will be obtain using SBP operators.
 
-    V = np.zeros((nx, 1))
-    S = np.zeros((nx, 1))
-    Vt = np.zeros((nx, 1))
-    St = np.zeros((nx, 1))
-    Vx = np.zeros((nx, 1))
-    Sx = np.zeros((nx, 1))
-
-    mms(V, S, Vt, St, Vx, Sx, y, t, type_0)
+    mms(V, S, Vt, St, Vx, Sx, y, t, type_0) ###
 
     # initialize arrays for computing derivatives
     vx = np.zeros((nx, 1))
     sx = np.zeros((nx, 1))
 
     # compute first derivatives for velocity and stress fields
-    first_derivative_sbp_operators.dx(vx, v, nx, dx, order)
+    '''
+    dx() is a function to perform the matrix multiplication of D \cdot *, where * is the thing you wanna take spacial derivative.
+    '''
+    first_derivative_sbp_operators.dx(vx, v, nx, dx, order) 
     first_derivative_sbp_operators.dx(sx, s, nx, dx, order)
 
     # compute the elastic rates
@@ -122,6 +133,10 @@ def impose_bc(
     tauN_1,
     tauN_2,
 ):
+    '''
+    Impose bc on to hv and hs, which in this content can be think of the H^-1 bit and the forcing bit...
+    So dv/dt (LHS term) = Dv + hv (penalty term + forcing term)...
+    '''
     # impose boundary conditions
     import numpy as np
     import boundarycondition
@@ -161,6 +176,10 @@ def impose_bc(
 
 
 def mms(V, S, V_t, S_t, V_x, S_x, y, t, type_0):
+    '''
+    I guess this is  to initialise V,S,V_t,S_t,V_x,S_x.
+
+    '''
 
     import numpy as np
 
@@ -184,17 +203,16 @@ def mms(V, S, V_t, S_t, V_x, S_x, y, t, type_0):
                 + np.exp(-(y - cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
             )
         )
-        S[:, :] = 0
-        # S[:, :] = (
-        #     1
-        #     / np.sqrt(2.0 * np.pi * delta ** 2)
-        #     * 0.5
-        #     * Zs
-        #     * (
-        #         np.exp(-(y + cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
-        #         - np.exp(-(y - cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
-        #     )
-        # )
+        S[:, :] = (
+            1
+            / np.sqrt(2.0 * np.pi * delta ** 2)
+            * 0.5
+            * Zs
+            * (
+                np.exp(-(y + cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
+                - np.exp(-(y - cs * (t) - x0) ** 2 / (2.0 * delta ** 2))
+            )
+        )
 
         V_t[:, :] = 0
         S_t[:, :] = 0
