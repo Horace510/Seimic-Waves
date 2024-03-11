@@ -64,11 +64,14 @@ tau_21 = 1
 tau_22 = 1
 
 # Initialize: particle velocity (v); and shear stress (s)
-v = np.zeros((nx, 1))
-s = np.zeros((nx, 1))
 
-U = np.zeros((nx, 1))
-V = np.zeros((nx, 1))
+##############################
+v = np.zeros((nx, 1))       ##
+s = np.zeros((nx, 1))       ##
+                            ##
+U = np.zeros((nx, 1))       ##
+V = np.zeros((nx, 1))       ##
+##############################
 U_t = np.zeros((nx, 1))
 V_t = np.zeros((nx, 1))
 U_x = np.zeros((nx, 1))
@@ -86,37 +89,37 @@ T = [0]                                  # later append every time steps to this
 # Computation and plotting
 
 # Initialize animated plot for velocity and stress
-fig1 = plt.figure(figsize=(10,10))
-ax1 = fig1.add_subplot(4,1,1)
-line1 = ax1.plot(y, v, 'r', y, U, 'k--')
-plt.title('numerical vs exact')
-plt.xlabel('x [km]')
-plt.ylabel('velocity [m/s]')
+# fig1 = plt.figure(figsize=(10,10))
+# ax1 = fig1.add_subplot(4,1,1)
+# line1 = ax1.plot(y, v, 'r', y, U, 'k--')
+# plt.title('numerical vs exact')
+# plt.xlabel('x [km]')
+# plt.ylabel('velocity [m/s]')
 
-ax2 = fig1.add_subplot(4,1,2)
-line2 = ax2.plot(y, s, 'r', y, V, 'k--')
-plt.title('numerical vs exact')
-plt.xlabel('x[km]')
-plt.ylabel('stress [MPa]')
+# ax2 = fig1.add_subplot(4,1,2)
+# line2 = ax2.plot(y, s, 'r', y, V, 'k--')
+# plt.title('numerical vs exact')
+# plt.xlabel('x[km]')
+# plt.ylabel('stress [MPa]')
 
-# Initialize error plot (for velocity and stress)
-ax3 = fig1.add_subplot(4,1,3)
-line3 = ax3.plot(T, EV, 'r')
-plt.title('relative error in particle velocity')
-plt.xlabel('time [s]')
-ax3.set_ylim([10**-5, 1])
-plt.ylabel('error')
+# # Initialize error plot (for velocity and stress)
+# ax3 = fig1.add_subplot(4,1,3)
+# line3 = ax3.plot(T, EV, 'r')
+# plt.title('relative error in particle velocity')
+# plt.xlabel('time [s]')
+# ax3.set_ylim([10**-5, 1])
+# plt.ylabel('error')
 
-ax4 = fig1.add_subplot(4,1,4)
-line4 = ax4.plot(T, EU, 'r') 
-plt.ylabel('error')
-plt.xlabel('time[t]')
-ax4.set_ylim([10**-5, 1])
-plt.title('relative error in stress')
+# ax4 = fig1.add_subplot(4,1,4)
+# line4 = ax4.plot(T, EU, 'r') 
+# plt.ylabel('error')
+# plt.xlabel('time[t]')
+# ax4.set_ylim([10**-5, 1])
+# plt.title('relative error in stress')
 
-plt.tight_layout()
-plt.ion()
-plt.show()
+# plt.tight_layout()
+# plt.ion()
+# plt.show()
 
 
 t=0   # initial time
@@ -129,7 +132,9 @@ type_0 = 'Gaussian'
 
 
 if type_0 in ('Sinusoidal'):
-            forcing = 1.0  # we must use forcing for Sinusoidal initial condition
+    forcing = 1.0  # we must use forcing for Sinusoidal initial condition
+
+
 
 # L2-norm normalizer
 # Generate  conditions for normalization
@@ -160,6 +165,14 @@ for t in utils.drange (0.0, tend+dt,dt):
     
     
     T.append(t)
+
+
+
+
+
+
+
+
 
     # Updating plots
     if n % iplot == 0: 

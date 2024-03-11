@@ -177,8 +177,7 @@ def impose_bc(
 
 def mms(V, S, V_t, S_t, V_x, S_x, y, t, type_0):
     '''
-    I guess this is  to initialise V,S,V_t,S_t,V_x,S_x.
-
+    This is  to initialise V,S,V_t,S_t,V_x,S_x.
     '''
 
     import numpy as np
@@ -251,8 +250,11 @@ def g(V, t):
 
 # To update penalty term h11 based on dx and the
 # required order
+        
 def penaltyweight(h11, dx, order):
-
+    '''
+    This is to calculate the penalyty weight, and it is done by updating the h11, with given dx and order
+    '''
     if order == 2:
         h11[:] = 0.5 * dx
     if order == 4:

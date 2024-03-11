@@ -128,26 +128,29 @@ def elastic_RK4(
     rs[:, :] = s + (dt / 6.0) * (k1s + 2.0 * k2s + 2.0 * k3s + k4s)
 
 
-def RK4advection(rv, v, nx, dx, order, y, t, dt, tau):
+# def RK4advection(rv, v, nx, dx, order, y, t, dt, tau):
+    '''
+    This is for Advection model, which is unreleven to elastic
+    '''
 
-    # fourth order Runge-Kutta time-stepping
-    import rate
-    import numpy as np
+#     # fourth order Runge-Kutta time-stepping
+#     import rate
+#     import numpy as np
 
-    # intialize arrays for Runge-Kutta stages
-    k1v = np.zeros((nx, 1))
-    k2v = np.zeros((nx, 1))
-    k3v = np.zeros((nx, 1))
-    k4v = np.zeros((nx, 1))
+#     # intialize arrays for Runge-Kutta stages
+#     k1v = np.zeros((nx, 1))
+#     k2v = np.zeros((nx, 1))
+#     k3v = np.zeros((nx, 1))
+#     k4v = np.zeros((nx, 1))
 
-    rate.advection_rate(k1v, v, nx, dx, order, t, y, tau)
-    rate.advection_rate(
-        k2v, v + 0.5 * dt * k1v, nx, dx, order, t + 0.5 * dt, y, tau
-    )
-    rate.advection_rate(
-        k3v, v + 0.5 * dt * k2v, nx, dx, order, t + 0.5 * dt, y, tau
-    )
-    rate.advection_rate(k4v, v + dt * k3v, nx, dx, order, t + dt, y, tau)
+#     rate.advection_rate(k1v, v, nx, dx, order, t, y, tau)
+#     rate.advection_rate(
+#         k2v, v + 0.5 * dt * k1v, nx, dx, order, t + 0.5 * dt, y, tau
+#     )
+#     rate.advection_rate(
+#         k3v, v + 0.5 * dt * k2v, nx, dx, order, t + 0.5 * dt, y, tau
+#     )
+#     rate.advection_rate(k4v, v + dt * k3v, nx, dx, order, t + dt, y, tau)
 
-    # update fields
-    rv[:, :] = v + (dt / 6.0) * (k1v + 2.0 * k2v + 2.0 * k3v + k4v)
+#     # update fields
+#     rv[:, :] = v + (dt / 6.0) * (k1v + 2.0 * k2v + 2.0 * k3v + k4v)

@@ -1,5 +1,6 @@
 def dx(ux, u, nx, dx, order):
     # summation-by-parts finite difference operators for first derivatives du/dx
+
     
     m = nx-1
     
