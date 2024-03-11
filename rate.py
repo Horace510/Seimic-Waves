@@ -227,9 +227,9 @@ def impose_bc(
     hv[nx - 1, :] = hv[nx - 1, :] - tauN_1 / h11 * pv
 
 # def advection_rate(hv, v, nx, dx, order, t, y, tau):
-        '''
-        Not relevant, this is for aadvection
-        '''
+'''
+Not relevant, this is for aadvection
+'''
 #     # we compute rates that will be used for Runge-Kutta time-stepping
 #     #
 #     import first_derivative_sbp_operators
@@ -258,10 +258,10 @@ def impose_bc(
 #     hv[0, :] = hv[0, :] - tau / h11 * (v[0, :] - V0)
         
 # def g(V, t):
-        '''
-        Not used
-        
-        '''
+'''
+Not used
+
+'''
 #     import numpy as np
 
 #     V[:, :] = 0.0
