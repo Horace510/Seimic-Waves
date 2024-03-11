@@ -3,7 +3,7 @@
 
 
 
-2. figure out the logic behind each file, which file use which file.
+2. figure out the logic behind each file, which file uses which file.
 
 1DSingleBlock.py:
 
