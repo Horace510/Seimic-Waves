@@ -24,6 +24,7 @@ u(x,0)=f(x), p(x,0)=g(x)
 
 
 # Initializations
+
 L = 10.0         # length of the domain (km)
 t = 0.0          # initial time
 tend = 1.45      # final time
@@ -72,6 +73,11 @@ s = np.zeros((nx, 1))       ##
 U = np.zeros((nx, 1))       ##
 V = np.zeros((nx, 1))       ##
 ##############################
+'''
+U is the analytic v?
+V is the analytic s?
+
+'''
 U_t = np.zeros((nx, 1))
 V_t = np.zeros((nx, 1))
 U_x = np.zeros((nx, 1))
@@ -122,7 +128,7 @@ T = [0]                                  # later append every time steps to this
 # plt.show()
 
 
-t=0   # initial time
+t = 0   # initial time
 
 forcing = 1.0  # forcing function, forcing = 1,  and no forcing function, forcing = 0
 
@@ -144,12 +150,17 @@ B =  (np.linalg.norm(s))
 
 
 # Loop through time and evolve the wave-fields using ADER time-stepping scheme of N+1 order of accuracy
-start = timeit.default_timer()
+# start = timeit.default_timer()
 
 # Generate initial conditions
 rate.mms(v, s, U_t, V_t, U_x, V_x, y, t, type_0)
 
+
 for t in utils.drange (0.0, tend+dt,dt):
+    '''
+    
+    
+    '''
     n = n+1
     
     # compute numerical solution 
@@ -174,38 +185,41 @@ for t in utils.drange (0.0, tend+dt,dt):
 
 
 
-    # Updating plots
-    if n % iplot == 0: 
-        for l in line1:
-            l.remove()
-            del l               
-        for l in line2:
-            l.remove()
-            del l
-        for l in line3:
-            l.remove()
-            del l               
-        for l in line4:
-            l.remove()
-            del l 
+    # # Updating plots
+    # if n % iplot == 0: 
+    #     for l in line1:
+    #         l.remove()
+    #         del l               
+    #     for l in line2:
+    #         l.remove()
+    #         del l
+    #     for l in line3:
+    #         l.remove()
+    #         del l               
+    #     for l in line4:
+    #         l.remove()
+    #         del l 
 
-        # Display lines
-        line1 = ax1.plot(y, v, 'r', y, U, 'k--')
-        ax1.legend(iter(line1),('Numerical', 'Analytical'))
-        line2 = ax2.plot(y, s, 'r', y, V, 'k--')
-        ax2.legend(iter(line2),('Numerical', 'Analytical'))
-        line3 = ax3.plot(T, EU, 'k--')
-        ax3.set_yscale("log")#, nonposx='clip')
-        line4 = ax4.plot(T, EV, 'k--')
-        ax4.set_yscale("log")#, nonposx='clip')
-        plt.gcf().canvas.draw()
+    #     # Display lines
+    #     line1 = ax1.plot(y, v, 'r', y, U, 'k--')
+    #     ax1.legend(iter(line1),('Numerical', 'Analytical'))
+    #     line2 = ax2.plot(y, s, 'r', y, V, 'k--')
+    #     ax2.legend(iter(line2),('Numerical', 'Analytical'))
+    #     line3 = ax3.plot(T, EU, 'k--')
+    #     ax3.set_yscale("log")#, nonposx='clip')
+    #     line4 = ax4.plot(T, EV, 'k--')
+    #     ax4.set_yscale("log")#, nonposx='clip')
+    #     plt.gcf().canvas.draw()
        
-plt.ioff()
-plt.show()
+# plt.ioff()
+# plt.show()
 
 # Simulation end time
-stop = timeit.default_timer()
-print('total simulation time = ', stop - start)                   # print the time required for simulation
-print('spatial order  of accuracy = ', order)                                  # print the polynomial degree used
-print('number of grid points = ', nx)                     # print the degree of freedom
-print('maximum relative error in particle velocity = ', max(EU))  # max. relative error in particle velocity
+    
+# stop = timeit.default_timer()
+
+
+# print('total simulation time = ', stop - start)                   # print the time required for simulation
+# print('spatial order  of accuracy = ', order)                                  # print the polynomial degree used
+# print('number of grid points = ', nx)                     # print the degree of freedom
+# print('maximum relative error in particle velocity = ', max(EU))  # max. relative error in particle velocity
